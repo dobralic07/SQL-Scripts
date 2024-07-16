@@ -20,7 +20,6 @@ GROUP BY
 
 SELECT
     EXTRACT(YEAR FROM v.when AT TIME ZONE 'America/Los_Angeles') AS year,
-    date(date_trunc('month', v.when AT TIME ZONE 'America/Los_Angeles')) AS month,
     CASE
         WHEN EXTRACT(MONTH FROM v.when AT TIME ZONE 'America/Los_Angeles') IN (4, 5, 6) THEN 'Q1'
         WHEN EXTRACT(MONTH FROM v.when AT TIME ZONE 'America/Los_Angeles') IN (7, 8, 9) THEN 'Q2'
@@ -42,7 +41,7 @@ JOIN
 WHERE
     content_type_id = 20 AND viewed_time > 0
 GROUP BY
-    year, month, fiscal_quarter, npi_record_id, p.site_id;
+    year, fiscal_quarter, npi_record_id, p.site_id;
 
 
 
